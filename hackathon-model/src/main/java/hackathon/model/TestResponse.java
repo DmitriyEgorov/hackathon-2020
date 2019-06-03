@@ -41,4 +41,30 @@ public class TestResponse {
     public void setDateTimeMessage(LocalDateTime dateTimeMessage) {
         this.dateTimeMessage = dateTimeMessage;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TestResponse that = (TestResponse) o;
+
+        return new org.apache.commons.lang3.builder.EqualsBuilder()
+                .append(message, that.message)
+                .append(dateTimeMessage, that.dateTimeMessage)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
+                .append(message)
+                .append(dateTimeMessage)
+                .toHashCode();
+    }
 }

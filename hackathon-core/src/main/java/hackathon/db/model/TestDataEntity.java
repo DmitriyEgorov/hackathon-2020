@@ -1,5 +1,8 @@
 package hackathon.db.model;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 
 /**
@@ -35,4 +38,29 @@ public class TestDataEntity {
         this.data = data;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        TestDataEntity that = (TestDataEntity) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(data, that.data)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(data)
+                .toHashCode();
+    }
 }
