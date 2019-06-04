@@ -1,6 +1,7 @@
 package hackathon.controller;
 
 import hackathon.config.HackathonApplication;
+import hackathon.config.TestHackathonApplication;
 import hackathon.db.model.TestDataEntity;
 import hackathon.db.repository.TestDataEntityRepository;
 import org.junit.Test;
@@ -26,8 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @since 31.05.2019
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@ContextConfiguration(classes = HackathonApplication.class)
+@SpringBootTest(classes = TestHackathonApplication.class)
 @AutoConfigureMockMvc
 public class TestControllerIntegrationTest {
 
