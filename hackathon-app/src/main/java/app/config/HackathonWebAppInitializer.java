@@ -1,4 +1,4 @@
-package hackathon.config;
+package app.config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;

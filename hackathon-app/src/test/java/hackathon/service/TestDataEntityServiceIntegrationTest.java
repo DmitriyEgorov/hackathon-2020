@@ -1,6 +1,5 @@
 package hackathon.service;
 
-import hackathon.config.HackathonApplication;
 import hackathon.db.model.TestDataEntity;
 import hackathon.db.repository.TestDataEntityRepository;
 import hackathon.exception.TestDataEntityNotFoundException;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import app.config.TestHackathonApplication;
 
 import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.junit.Assert.assertEquals;
@@ -23,7 +23,7 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = HackathonApplication.class)
+@ContextConfiguration(classes = TestHackathonApplication.class)
 public class TestDataEntityServiceIntegrationTest {
 
     @Autowired
