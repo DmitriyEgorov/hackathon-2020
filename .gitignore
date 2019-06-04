@@ -1,0 +1,10 @@
+.idea/artifacts
+.idea/libraries
+.idea/sonarlint*
+.idea/deployment.xml
+.idea/uiDesigner.xml
+.idea/workspace.xml
+.idea/modules.xml
+*.iml
+target
+dist
