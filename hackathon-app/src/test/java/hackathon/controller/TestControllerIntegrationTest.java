@@ -28,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = TestHackathonApplication.class)
 @AutoConfigureMockMvc
 public class TestControllerIntegrationTest {
+    private static final String TEST_PATH = "/test";
 
     @Autowired
     private TestDataEntityRepository testDataEntityRepository;
@@ -37,7 +38,7 @@ public class TestControllerIntegrationTest {
 
     @Test
     public void testHi() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/")
+        mvc.perform(MockMvcRequestBuilders.get(TEST_PATH.concat("/hi"))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Dmitriy, Mickhail and Sergey say hi!")));
@@ -45,7 +46,7 @@ public class TestControllerIntegrationTest {
 
     @Test
     public void testPing() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/ping")
+        mvc.perform(MockMvcRequestBuilders.get(TEST_PATH.concat("/ping"))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(mvcResult ->
@@ -59,7 +60,7 @@ public class TestControllerIntegrationTest {
         TestDataEntity testDataEntity = new TestDataEntity();
         testDataEntity.setData(test_data);
         testDataEntity = testDataEntityRepository.save(testDataEntity);
-        mvc.perform(MockMvcRequestBuilders.get("/data/{id}", testDataEntity.getId())
+        mvc.perform(MockMvcRequestBuilders.get(TEST_PATH.concat("/data/{id}"), testDataEntity.getId())
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(mvcResult ->
@@ -69,7 +70,7 @@ public class TestControllerIntegrationTest {
     @Test
     public void testData_notFound() throws Exception {
         testDataEntityRepository.deleteAll();
-        mvc.perform(MockMvcRequestBuilders.get("/data/{id}", Long.MAX_VALUE)
+        mvc.perform(MockMvcRequestBuilders.get(TEST_PATH.concat("/data/{id}"), Long.MAX_VALUE)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
@@ -77,7 +78,7 @@ public class TestControllerIntegrationTest {
     @Test
     public void testData_badRequest() throws Exception {
         testDataEntityRepository.deleteAll();
-        mvc.perform(MockMvcRequestBuilders.get("/data/{id}", "string")
+        mvc.perform(MockMvcRequestBuilders.get(TEST_PATH.concat("/data/{id}"), "string")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }

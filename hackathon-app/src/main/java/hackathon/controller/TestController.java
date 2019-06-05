@@ -8,6 +8,7 @@ import hackathon.processor.TestProcessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.Produces;
@@ -20,6 +21,7 @@ import javax.ws.rs.core.MediaType;
  * @since 28.05.2019
  */
 @RestController
+@RequestMapping("/test")
 public class TestController {
 
     private final TestProcessor testProcessor;
@@ -30,7 +32,7 @@ public class TestController {
         this.testDataProcessor = testDataProcessor;
     }
 
-    @GetMapping("/")
+    @GetMapping("/hi")
     public String sayHi() {
         return testProcessor.getHiMessage();
     }
