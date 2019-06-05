@@ -1,8 +1,10 @@
 pipeline {
-    agent any
-    tools {
-        maven 'mvn-3.5.2'
-    }
+    agent {
+            docker {
+                image 'maven:3-alpine'
+                args '-v /root/.m2:/root/.m2'
+            }
+        }
 
     stages {
         stage('Build') {
@@ -14,11 +16,11 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
-        }
-    }
-    post {
-        always {
-            junit 'build/reports/**/*.xml'
+            post {
+                always {
+                    junit 'build/reports/**/*.xml'
+                }
+            }
         }
     }
 }
