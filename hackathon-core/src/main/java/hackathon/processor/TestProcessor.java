@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Service
 public class TestProcessor {
 
-    private static final String HI_MESSAGE = "Dmitriy, Mickhail and Sergey say hi!";
+    private static final String HI_MESSAGE = "Dmitriy, Karina, Mickhail and Sergey say hi!";
     private static final String TEST_MESSAGE = "test success";
 
     /**
