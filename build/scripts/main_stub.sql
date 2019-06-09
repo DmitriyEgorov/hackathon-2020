@@ -15,4 +15,4 @@ CREATE TABLE hackathon_stub.TEST_STUB_DATA (
   PRIMARY KEY (id)
 );
 
-INSERT INTO hackathon_test.TEST_STUB_DATA (id, data) VALUES (1, 'Scorpions wind of change');
+INSERT INTO hackathon_stub.TEST_STUB_DATA (id, data) VALUES (1, 'Scorpions wind of change');
