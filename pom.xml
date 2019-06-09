@@ -12,6 +12,7 @@
         <module>hackathon-app</module>
         <module>hackathon-model</module>
         <module>hackathon-core</module>
+        <module>hackathon-stub</module>
     </modules>
 
     <parent>
