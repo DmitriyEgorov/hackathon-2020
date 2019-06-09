@@ -3,8 +3,10 @@ package hackathon.controller;
 import hackathon.exception.TestDataEntityNotFoundException;
 import hackathon.model.TestData;
 import hackathon.model.TestResponse;
+import hackathon.model.TestStubData;
 import hackathon.processor.TestDataProcessor;
 import hackathon.processor.TestProcessor;
+import hackathon.processor.TestStubDataProcessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,10 +28,15 @@ public class TestController {
 
     private final TestProcessor testProcessor;
     private final TestDataProcessor testDataProcessor;
+    private final TestStubDataProcessor testStubDataProcessor;
 
-    public TestController(TestProcessor testProcessor, TestDataProcessor testDataProcessor) {
+    public TestController(
+            TestProcessor testProcessor,
+            TestDataProcessor testDataProcessor,
+            TestStubDataProcessor testStubDataProcessor) {
         this.testProcessor = testProcessor;
         this.testDataProcessor = testDataProcessor;
+        this.testStubDataProcessor = testStubDataProcessor;
     }
 
     @GetMapping("/hi")
@@ -49,6 +56,16 @@ public class TestController {
         try {
             return ResponseEntity.ok(testDataProcessor.findDataById(id));
         } catch (TestDataEntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/stub/data/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseEntity<TestStubData> getTestStubData(@PathVariable("id") Long id) {
+        try {
+            return ResponseEntity.ok(testStubDataProcessor.findDataById(id));
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }

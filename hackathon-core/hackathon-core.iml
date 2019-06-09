@@ -58,6 +58,7 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.26" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:5.1.6.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.4.199" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-web:4.3.7.RELEASE" level="project" />
     <orderEntry type="module" module-name="hackathon-model" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />

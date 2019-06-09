@@ -17,7 +17,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication
 @ComponentScan(basePackages = "stub")
 @EnableWebMvc
-@PropertySource("classpath:stub.properties")
 @EnableJpaRepositories(basePackages = {"stub.db.repository"})
 @EntityScan(basePackages = {"stub.db.model"})
 public class TestHackathonStubApplication {
