@@ -20,9 +20,9 @@ public class TestStubDataProcessor {
     private final RestTemplate restTemplate = new RestTemplate();
     private final HttpEntity<Object> entity = new HttpEntity<>(new HttpHeaders());
 
-    public TestStubData findDataById(Long id) {
+    public TestStubData findDataById(Long id, String url) {
         UriComponents uri = UriComponentsBuilder
-                .fromHttpUrl("http://localhost:8080/stub/test-stub/data/{id}")
+                .fromHttpUrl(url.concat("/test-stub/data/{id}"))
                 .buildAndExpand(id);
 
         ResponseEntity<TestStubData> response = restTemplate
