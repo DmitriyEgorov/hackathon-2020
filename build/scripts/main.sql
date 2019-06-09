@@ -1,6 +1,6 @@
 -- drop old schema and user
-DROP SCHEMA IF EXISTS hackathon CASCADE;
-DROP USER IF EXISTS hackathon;
+DROP SCHEMA IF EXISTS hackathon_test CASCADE;
+DROP USER IF EXISTS hackathon_test;
 -- create schema, user, rights
 CREATE USER hackathon_test WITH PASSWORD 'hackathon_test';
 CREATE SCHEMA hackathon_test;
