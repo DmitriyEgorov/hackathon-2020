@@ -7,6 +7,11 @@
           <option name="CONTEXT_PATH" value="/" />
         </settings>
       </artifact>
+      <artifact name="hackathon-stub:war exploded">
+        <settings>
+          <option name="CONTEXT_PATH" value="/stub" />
+        </settings>
+      </artifact>
     </deployment>
     <server-settings>
       <option name="BASE_DIRECTORY_NAME" value="Unnamed_hackathon" />
@@ -69,6 +74,7 @@
       <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean:clean package" />
       <option name="BuildArtifacts" enabled="true">
         <artifact name="hackathon-app:war exploded" />
+        <artifact name="hackathon-stub:war exploded" />
       </option>
     </method>
   </configuration>
