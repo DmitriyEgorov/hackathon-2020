@@ -9,6 +9,7 @@
         <module name="hackathon-app" />
         <module name="hackathon-core" />
         <module name="hackathon-model" />
+        <module name="hackathon-stub" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -16,6 +17,7 @@
       <module name="hackathon-app" target="1.8" />
       <module name="hackathon-core" target="1.8" />
       <module name="hackathon-model" target="1.8" />
+      <module name="hackathon-stub" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
