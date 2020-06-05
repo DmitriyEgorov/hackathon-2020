@@ -23,14 +23,30 @@ public class CompetenceService {
 
 	public List<CompetenceRepresentation> getAllCompetences() {
 		return competenceRepository.findAll().stream()
-				.map(CompetenceService::prepareCaseRepresentation)
+				.map(CompetenceService::prepareCompetenceRepresentation)
 				.collect(Collectors.toList());
 	}
 
-	private static CompetenceRepresentation prepareCaseRepresentation(CompetenceEntity competenceEntity) {
+	public CompetenceRepresentation getCompetence(Long id) {
+		return prepareCompetenceRepresentation(competenceRepository.getOne(id));
+	}
+
+	public CompetenceRepresentation createCompetence(CompetenceRepresentation competenceRepresentation) {
+		return prepareCompetenceRepresentation(competenceRepository.save(prepareCompetenceEntity(competenceRepresentation)));
+	}
+
+	private static CompetenceRepresentation prepareCompetenceRepresentation(CompetenceEntity competenceEntity) {
 		return CompetenceRepresentation.builder()
 				.id(competenceEntity.getId())
 				.name(competenceEntity.getName())
 				.build();
 	}
+
+	private static CompetenceEntity prepareCompetenceEntity(CompetenceRepresentation competenceRepresentation) {
+		return CompetenceEntity.builder()
+				.id(competenceRepresentation.getId())
+				.name(competenceRepresentation.getName())
+				.build();
+	}
+
 }

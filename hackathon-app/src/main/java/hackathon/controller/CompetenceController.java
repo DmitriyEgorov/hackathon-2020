@@ -1,13 +1,13 @@
 package hackathon.controller;
 
 import hackathon.model.CompetenceRepresentation;
-import hackathon.model.UserRepresentation;
 import hackathon.services.CompetenceService;
-import hackathon.services.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 /**
@@ -25,7 +25,39 @@ public class CompetenceController {
 	}
 
 	@GetMapping
-	public List<CompetenceRepresentation> getAllUsers() {
-		return competenceService.getAllCompetences();
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<List<CompetenceRepresentation>> getAllCompetences() {
+		return ResponseEntity.ok(competenceService.getAllCompetences());
 	}
+
+	@GetMapping("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<CompetenceRepresentation> getCompetence(@PathVariable("id") Long id) {
+		try {
+			return ResponseEntity.ok(competenceService.getCompetence(id));
+		} catch (Exception e) {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@PostMapping("/create")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<CompetenceRepresentation> createCompetence(@RequestBody CompetenceRepresentation competenceRepresentation) {
+		try {
+			return ResponseEntity.ok(competenceService.createCompetence(competenceRepresentation));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@PostMapping("/update")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<CompetenceRepresentation> updateCompetence(@RequestBody CompetenceRepresentation competenceRepresentation) {
+		try {
+			return ResponseEntity.ok(competenceService.createCompetence(competenceRepresentation));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
 }
