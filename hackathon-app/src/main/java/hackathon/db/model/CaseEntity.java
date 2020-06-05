@@ -3,6 +3,8 @@ package hackathon.db.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by Albert
@@ -22,4 +24,10 @@ public class CaseEntity {
 
 	@Column(name = "NAME")
 	private String name;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "CASE_TO_CRITERIA",
+			joinColumns = @JoinColumn(name = "CASE_ID", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "CRITERIA_ID", referencedColumnName = "id"))
+	private Set<CriteriaEntity> criteriaEntities;
 }

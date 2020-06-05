@@ -5,18 +5,15 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
-
 /**
  * Created by Albert
- * Created at 05.06.2020.06.2020
+ * Created at 06.06.2020.06.2020
  */
 @Getter
 @Setter
 @EqualsAndHashCode
 @Builder
-public class CaseRepresentation {
+public class CriteriaRepresentation {
 	private Long id;
 	private String name;
-	private Set<CriteriaRepresentation> criteriaRepresentations;
 }

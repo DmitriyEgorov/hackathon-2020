@@ -3,9 +3,11 @@ package hackathon.services;
 import hackathon.db.model.CaseEntity;
 import hackathon.model.CaseRepresentation;
 import hackathon.db.repository.CaseRepository;
+import hackathon.model.CriteriaRepresentation;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -28,9 +30,13 @@ public class CaseService {
 	}
 
 	private static CaseRepresentation prepareCaseRepresentation(CaseEntity caseEntity) {
+		Set<CriteriaRepresentation> criteriaRepresentations = caseEntity.getCriteriaEntities().stream()
+				.map(CriteriaService::prepareCriteriaRepresentation)
+				.collect(Collectors.toSet());
 		return CaseRepresentation.builder()
 				.id(caseEntity.getId())
 				.name(caseEntity.getName())
+				.criteriaRepresentations(criteriaRepresentations)
 				.build();
 	}
 }
