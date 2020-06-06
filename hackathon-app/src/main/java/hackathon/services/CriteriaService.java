@@ -28,6 +28,11 @@ public class CriteriaService {
 				.collect(Collectors.toList());
 	}
 
+	public CriteriaRepresentation getCriteria(Long id) {
+		return prepareCriteriaRepresentation(criteriaRepository.getOne(id));
+	}
+
+
 	public static CriteriaRepresentation prepareCriteriaRepresentation(CriteriaEntity criteriaEntity) {
 		return CriteriaRepresentation.builder()
 				.id(criteriaEntity.getId())

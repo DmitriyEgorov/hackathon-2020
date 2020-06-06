@@ -93,11 +93,29 @@ CREATE TABLE hackathon_test.GRADES
     AUTHOR_ID SERIAL NOT NULL
 );
 
-alter table GRADES
+alter table hackathon_test.GRADES
 drop column name;
 
-alter table GRADES
+alter table hackathon_test.GRADES
 add column CASE_ID serial not null;
 
-insert into GRADES(VALUE, AUTHOR_ID) values (7, 1);
-update GRADES set CASE_ID = 1 where id = 1;
+insert into hackathon_test.GRADES(VALUE, AUTHOR_ID) values (7, 1);
+update hackathon_test.GRADES set CASE_ID = 1 where id = 1;
+
+
+CREATE TABLE hackathon_test.criteria_to_competence
+(
+    COMPETENCE_ID     INT NOT NULL,
+    CRITERIA_ID INT NOT NULL,
+    PRIMARY KEY (CRITERIA_ID, COMPETENCE_ID)
+);
+
+ALTER TABLE hackathon_test.criteria_to_competence
+    ADD CONSTRAINT criteriaIdFk
+        FOREIGN KEY (CRITERIA_ID)
+            REFERENCES hackathon_test.criteria;
+
+ALTER TABLE hackathon_test.criteria_to_competence
+    ADD CONSTRAINT competenceIdFk
+        FOREIGN KEY (COMPETENCE_ID)
+            REFERENCES hackathon_test.competence;

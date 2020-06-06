@@ -18,4 +18,8 @@ public interface CompetenceRepository extends JpaRepository<CompetenceEntity, Lo
     @Query(nativeQuery = true, value =
             "SELECT c.id, c.name from hackathon_test.competence c join hackathon_test.competence_user u on c.id = u.competence_id where u.user_id = :userId")
     List<CompetenceEntity> findCompetenceEntityByUser(@Param("userId") Long userId);
+
+    @Query(nativeQuery = true, value =
+            "SELECT c.id, c.name from hackathon_test.competence c join hackathon_test.criteria_to_competence criteria on c.id = criteria.competence_id where criteria.criteria_id = :criteriaId")
+    List<CompetenceEntity> findCompetenceEntityByCriteria(@Param("criteriaId") Long criteriaId);
 }
