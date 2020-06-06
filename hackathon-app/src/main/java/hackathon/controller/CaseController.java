@@ -27,9 +27,14 @@ public class CaseController {
 		return caseService.getAllCases();
 	}
 
+	@GetMapping("/{id}")
+	public CaseRepresentation getCase(@PathVariable("id") Long id) {
+		return caseService.getCase(id);
+	}
+
 	@GetMapping("/bycategory")
 	public Page<CaseEntity> getCasesByCategoryId(@RequestParam("id") Long categoryId, @RequestParam(required = false, name = "page") Integer page,
-	                                             @RequestParam(required = false, name = "size") Integer size) {
+												 @RequestParam(required = false, name = "size") Integer size) {
 		return caseService.getCasesByCategory(page, size, categoryId);
 	}
 }

@@ -34,6 +34,11 @@ public class CaseService {
 				.collect(Collectors.toList());
 	}
 
+	public CaseRepresentation getCase(Long id) {
+		return prepareCaseRepresentation(caseRepository.getOne(id));
+	}
+
+
 	public Page<CaseEntity> getCasesByCategory(Integer page, Integer size, Long categoryId) {
 		int pageNum = page != null ? page : 0;
 		int pageSize = size != null ? size : 10;

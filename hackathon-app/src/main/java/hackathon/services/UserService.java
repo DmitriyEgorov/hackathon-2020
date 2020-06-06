@@ -26,14 +26,8 @@ public class UserService {
 		return userRepository.findAll().stream().map(UserService::getUserRepresentation).collect(Collectors.toList());
 	}
 
-	public UserRepresentation getUserById(Long userId) {
-		Optional<UserEntity> userEntity = userRepository.findById(userId);
-		if (userEntity.isPresent()) {
-			return getUserRepresentation(userEntity.get());
-		} else {
-			return UserRepresentation.builder().build();
-		}
-
+	public UserRepresentation getUser(Long id) {
+		return getUserRepresentation(userRepository.getOne(id));
 	}
 
 	public static UserRepresentation getUserRepresentation(UserEntity userEntity) {

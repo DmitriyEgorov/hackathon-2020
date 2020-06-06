@@ -35,6 +35,18 @@ public class CompetenceService {
 		return prepareCompetenceRepresentation(competenceRepository.save(prepareCompetenceEntity(competenceRepresentation)));
 	}
 
+	public List<CompetenceRepresentation>  findCompetenceEntityByUser (Long userId) {
+		return competenceRepository.findCompetenceEntityByUser(userId).stream()
+				.map(CompetenceService::prepareCompetenceRepresentation)
+				.collect(Collectors.toList());
+	}
+
+	public List<CompetenceRepresentation>  findCompetenceEntityByCriteria (Long criteriaId) {
+		return competenceRepository.findCompetenceEntityByCriteria(criteriaId).stream()
+				.map(CompetenceService::prepareCompetenceRepresentation)
+				.collect(Collectors.toList());
+	}
+
 	private static CompetenceRepresentation prepareCompetenceRepresentation(CompetenceEntity competenceEntity) {
 		CompetenceRepresentation competenceRepresentation = new CompetenceRepresentation();
 		competenceRepresentation.setId(competenceEntity.getId());
