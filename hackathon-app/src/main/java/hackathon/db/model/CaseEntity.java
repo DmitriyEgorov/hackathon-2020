@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -39,4 +40,13 @@ public class CaseEntity {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "CASE_ID")
 	private Set<GradeEntity> gradeEntitySet;
+
+    @Column(name = "START_DATE")
+    private LocalDate statDate;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
+
+    @Column(name = "IMAGE_PATH")
+    private String imagePath;
 }

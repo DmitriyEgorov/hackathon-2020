@@ -21,4 +21,8 @@ public class CaseRepresentation {
 	private String name;
 	private List<CriteriaRepresentation> criteriaRepresentations;
 	private List<GradeRepresentation> gradeRepresentations;
+	private String statDate;
+	private String text;
+	private String shortText;
+	private String imagePath;
 }

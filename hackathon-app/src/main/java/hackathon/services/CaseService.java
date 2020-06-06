@@ -60,6 +60,11 @@ public class CaseService {
 				.name(caseEntity.getName())
 				.criteriaRepresentations(criteriaRepresentations)
 				.gradeRepresentations(gradeRepresentations)
+				.statDate(caseEntity.getStatDate().toString())
+				.shortText(caseEntity.getDescription().substring(
+				        0,
+                        caseEntity.getDescription().length() < 100 ? caseEntity.getDescription().length() : 100))
+				.imagePath(caseEntity.getImagePath())
 				.build();
 	}
 

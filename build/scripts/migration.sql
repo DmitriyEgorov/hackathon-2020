@@ -119,3 +119,7 @@ ALTER TABLE hackathon_test.criteria_to_competence
     ADD CONSTRAINT competenceIdFk
         FOREIGN KEY (COMPETENCE_ID)
             REFERENCES hackathon_test.competence;
+
+ALTER TABLE hackathon_test.CASES ADD COLUMN START_DATE TIMESTAMP;
+ALTER TABLE hackathon_test.CASES ADD COLUMN DESCRIPTION TEXT;
+ALTER TABLE hackathon_test.CASES ADD COLUMN IMAGE_PATH TEXT;
