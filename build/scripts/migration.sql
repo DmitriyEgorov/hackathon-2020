@@ -92,3 +92,12 @@ CREATE TABLE hackathon_test.GRADES
     VALUE INT NOT NULL,
     AUTHOR_ID SERIAL NOT NULL
 );
+
+alter table GRADES
+drop column name;
+
+alter table GRADES
+add column CASE_ID serial not null;
+
+insert into GRADES(VALUE, AUTHOR_ID) values (7, 1);
+update GRADES set CASE_ID = 1 where id = 1;

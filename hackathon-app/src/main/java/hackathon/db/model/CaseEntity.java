@@ -35,4 +35,8 @@ public class CaseEntity {
 			joinColumns = @JoinColumn(name = "CASE_ID", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "CRITERIA_ID", referencedColumnName = "id"))
 	private Set<CriteriaEntity> criteriaEntities;
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "CASE_ID")
+	private Set<GradeEntity> gradeEntitySet;
 }

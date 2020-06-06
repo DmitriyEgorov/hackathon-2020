@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,5 +19,6 @@ import java.util.Set;
 public class CaseRepresentation {
 	private Long id;
 	private String name;
-	private Set<CriteriaRepresentation> criteriaRepresentations;
+	private List<CriteriaRepresentation> criteriaRepresentations;
+	private List<GradeRepresentation> gradeRepresentations;
 }

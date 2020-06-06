@@ -4,6 +4,7 @@ import hackathon.db.model.CaseEntity;
 import hackathon.model.CaseRepresentation;
 import hackathon.db.repository.CaseRepository;
 import hackathon.model.CriteriaRepresentation;
+import hackathon.model.GradeRepresentation;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,13 +37,17 @@ public class CaseService {
 
 
 	private static CaseRepresentation prepareCaseRepresentation(CaseEntity caseEntity) {
-		Set<CriteriaRepresentation> criteriaRepresentations = caseEntity.getCriteriaEntities().stream()
+		List<CriteriaRepresentation> criteriaRepresentations = caseEntity.getCriteriaEntities().stream()
 				.map(CriteriaService::prepareCriteriaRepresentation)
-				.collect(Collectors.toSet());
+				.collect(Collectors.toList());
+		List<GradeRepresentation> gradeRepresentations = caseEntity.getGradeEntitySet().stream()
+				.map(GradeService::prepareGradeRepresentation)
+				.collect(Collectors.toList());
 		return CaseRepresentation.builder()
 				.id(caseEntity.getId())
 				.name(caseEntity.getName())
 				.criteriaRepresentations(criteriaRepresentations)
+				.gradeRepresentations(gradeRepresentations)
 				.build();
 	}
 
