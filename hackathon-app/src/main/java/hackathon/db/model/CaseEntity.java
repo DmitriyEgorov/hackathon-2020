@@ -49,4 +49,7 @@ public class CaseEntity {
 
     @Column(name = "IMAGE_PATH")
     private String imagePath;
+
+	@Column(name = "CASE_TYPE")
+	private Long caseType;
 }

@@ -38,14 +38,14 @@ public class CaseService {
 		return prepareCaseRepresentation(caseRepository.getOne(id));
 	}
 
-	public Page<CaseRepresentation> getCaseRepresentationByCategory(Integer page, Integer size, Long categoryId) {
-		return getCasesByCategory(page, size, categoryId).map(CaseService::prepareCaseRepresentation);
+	public Page<CaseRepresentation> getCaseRepresentationByCategory(Integer page, Integer size, Long categoryId, Long caseType) {
+		return getCasesByCategory(page, size, categoryId, caseType).map(CaseService::prepareCaseRepresentation);
 	}
 
-	private Page<CaseEntity> getCasesByCategory(Integer page, Integer size, Long categoryId) {
+	private Page<CaseEntity> getCasesByCategory(Integer page, Integer size, Long categoryId, Long caseType) {
 		int pageNum = page != null ? page : 0;
 		int pageSize = size != null ? size : 10;
-		return casePagebleRepository.findByCategoryId(categoryId, PageRequest.of(pageNum, pageSize));
+		return casePagebleRepository.findByCategoryIdAndCaseType(categoryId, caseType, PageRequest.of(pageNum, pageSize));
 	}
 
 	private static CaseRepresentation prepareCaseRepresentation(CaseEntity caseEntity) {
@@ -60,8 +60,9 @@ public class CaseService {
 				.name(caseEntity.getName())
 				.criteriaRepresentations(criteriaRepresentations)
 				.gradeRepresentations(gradeRepresentations)
-				.statDate(caseEntity.getStatDate().toString())
-				.shortText(caseEntity.getDescription().substring(
+				.statDate(caseEntity.getStatDate() == null ? null : caseEntity.getStatDate().toString())
+				.shortText(caseEntity.getDescription() == null ? null :
+						caseEntity.getDescription().substring(
 				        0,
                         caseEntity.getDescription().length() < 100 ? caseEntity.getDescription().length() : 100))
 				.imagePath(caseEntity.getImagePath())

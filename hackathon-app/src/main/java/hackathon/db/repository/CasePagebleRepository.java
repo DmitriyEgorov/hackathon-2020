@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CasePagebleRepository extends PagingAndSortingRepository<CaseEntity, Long> {
-	Page<CaseEntity> findByCategoryId(Long categoryId, Pageable pageable);
+	Page<CaseEntity> findByCategoryIdAndCaseType(Long categoryId, Long caseType, Pageable pageable);
 }
