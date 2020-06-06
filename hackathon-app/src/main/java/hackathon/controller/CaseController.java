@@ -39,8 +39,8 @@ public class CaseController {
 
     @GetMapping("/bycategory")
     public Page<CaseRepresentationShort> getCasesByCategoryId(
-            @RequestParam("case_category") Long categoryId,
-            @RequestParam("case_type") Long caseType,
+            @RequestParam(required = false, name = "case_category") Long categoryId,
+            @RequestParam(required = false, name = "case_type") Long caseType,
             @RequestParam(required = false, name = "case_page") Integer page,
             @RequestParam(required = false, name = "case_count") Integer size) {
         return caseService.getCaseRepresentationByCategory(page, size, categoryId, caseType);

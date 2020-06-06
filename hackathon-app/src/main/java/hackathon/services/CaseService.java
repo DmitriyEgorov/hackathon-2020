@@ -46,13 +46,21 @@ public class CaseService {
     }
 
     public Page<CaseRepresentationShort> getCaseRepresentationByCategory(Integer page, Integer size, Long categoryId, Long caseType) {
-        return getCasesByCategory(page, size, categoryId, caseType).map(CaseService::prepareCaseRepresentationShort);
+        return (categoryId == null || caseType == null) ?
+                getCasesByCategory(page, size).map(CaseService::prepareCaseRepresentationShort) :
+                getCasesByCategory(page, size, categoryId, caseType).map(CaseService::prepareCaseRepresentationShort);
     }
 
     private Page<CaseEntity> getCasesByCategory(Integer page, Integer size, Long categoryId, Long caseType) {
         int pageNum = page != null ? page : 0;
         int pageSize = size != null ? size : 10;
         return casePagebleRepository.findByCategoryIdAndCaseType(categoryId, caseType, PageRequest.of(pageNum, pageSize));
+    }
+
+    private Page<CaseEntity> getCasesByCategory(Integer page, Integer size) {
+        int pageNum = page != null ? page : 0;
+        int pageSize = size != null ? size : 10;
+        return casePagebleRepository.findAll(PageRequest.of(pageNum, pageSize));
     }
 
     private static CaseRepresentation prepareCaseRepresentation(CaseEntity caseEntity) {
