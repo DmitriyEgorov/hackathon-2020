@@ -3,10 +3,8 @@ package hackathon.controller;
 import hackathon.db.model.CaseEntity;
 import hackathon.model.CaseRepresentation;
 import hackathon.services.CaseService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class CaseController {
 
 	@GetMapping("/bycategory")
 	public Page<CaseEntity> getCasesByCategoryId(@RequestParam("id") Long categoryId, @RequestParam(required = false, name = "page") Integer page,
-	                                             @RequestParam(required = false, name = "size") Integer size) {
+												 @RequestParam(required = false, name = "size") Integer size) {
 		return caseService.getCasesByCategory(page, size, categoryId);
 	}
 }
