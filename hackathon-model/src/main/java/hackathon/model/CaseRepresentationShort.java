@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Albert
@@ -16,13 +15,10 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode
 @Builder
-public class CaseRepresentation {
+public class CaseRepresentationShort {
 	private Long id;
 	private String name;
-	private List<CriteriaRepresentation> criteriaRepresentations;
-	private List<GradeRepresentation> gradeRepresentations;
 	private String statDate;
-	private String text;
 	private String preview;
 	private String imagePath;
 }

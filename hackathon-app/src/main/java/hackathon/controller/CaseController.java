@@ -1,6 +1,7 @@
 package hackathon.controller;
 
 import hackathon.model.CaseRepresentation;
+import hackathon.model.CaseRepresentationShort;
 import hackathon.services.CaseService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class CaseController {
     }
 
     @GetMapping("/bycategory")
-    public Page<CaseRepresentation> getCasesByCategoryId(
+    public Page<CaseRepresentationShort> getCasesByCategoryId(
             @RequestParam("case_category") Long categoryId,
             @RequestParam("case_type") Long caseType,
             @RequestParam(required = false, name = "case_page") Integer page,
