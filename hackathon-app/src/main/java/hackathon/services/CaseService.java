@@ -29,6 +29,12 @@ public class CaseService {
 				.collect(Collectors.toList());
 	}
 
+	public CaseRepresentation getCase(Long id) {
+		return prepareCaseRepresentation(caseRepository.getOne(id));
+	}
+
+
+
 	private static CaseRepresentation prepareCaseRepresentation(CaseEntity caseEntity) {
 		Set<CriteriaRepresentation> criteriaRepresentations = caseEntity.getCriteriaEntities().stream()
 				.map(CriteriaService::prepareCriteriaRepresentation)

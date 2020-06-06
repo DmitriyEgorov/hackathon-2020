@@ -25,6 +25,10 @@ public class UserService {
 		return userRepository.findAll().stream().map(UserService::getUserRepresentation).collect(Collectors.toList());
 	}
 
+	public UserRepresentation getUser(Long id) {
+		return getUserRepresentation(userRepository.getOne(id));
+	}
+
 	public static UserRepresentation getUserRepresentation(UserEntity userEntity) {
 		return UserRepresentation.builder()
 				.id(userEntity.getId())
