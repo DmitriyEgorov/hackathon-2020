@@ -1,5 +1,0 @@
-CREATE TABLE hackathon_test.CASES
-(
-    ID   SERIAL PRIMARY KEY NOT NULL,
-    NAME VARCHAR
-);
