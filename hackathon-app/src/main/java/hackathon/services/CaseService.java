@@ -1,14 +1,16 @@
 package hackathon.services;
 
 import hackathon.db.model.CaseEntity;
+import hackathon.db.repository.CasePagebleRepository;
 import hackathon.model.CaseRepresentation;
 import hackathon.db.repository.CaseRepository;
 import hackathon.model.CriteriaRepresentation;
 import hackathon.model.GradeRepresentation;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -19,9 +21,11 @@ import java.util.stream.Collectors;
 public class CaseService {
 
 	private final CaseRepository caseRepository;
+	private final CasePagebleRepository casePagebleRepository;
 
-	public CaseService(CaseRepository caseRepository) {
+	public CaseService(CaseRepository caseRepository, CasePagebleRepository casePagebleRepository) {
 		this.caseRepository = caseRepository;
+		this.casePagebleRepository = casePagebleRepository;
 	}
 
 	public List<CaseRepresentation> getAllCases() {
@@ -35,6 +39,11 @@ public class CaseService {
 	}
 
 
+	public Page<CaseEntity> getCasesByCategory(Integer page, Integer size, Long categoryId) {
+		int pageNum = page != null ? page : 0;
+		int pageSize = size != null ? size : 10;
+		return casePagebleRepository.findByCategoryId(categoryId, PageRequest.of(pageNum, pageSize));
+	}
 
 	private static CaseRepresentation prepareCaseRepresentation(CaseEntity caseEntity) {
 		List<CriteriaRepresentation> criteriaRepresentations = caseEntity.getCriteriaEntities().stream()

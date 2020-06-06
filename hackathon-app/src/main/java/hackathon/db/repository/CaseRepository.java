@@ -13,4 +13,5 @@ import java.util.List;
 @Repository
 public interface CaseRepository extends JpaRepository<CaseEntity, Long> {
 	List<CaseEntity> findAll();
+	List<CaseEntity> findByCategoryId(Long categoryId);
 }
