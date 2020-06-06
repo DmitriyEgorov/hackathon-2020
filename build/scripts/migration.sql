@@ -1,24 +1,24 @@
 -- Проливаем простыню, все скрипты перенесены
-CREATE TABLE CASES
+CREATE TABLE hackathon_test.CASES
 (
     ID   SERIAL PRIMARY KEY NOT NULL,
     NAME VARCHAR
 );
 
-CREATE TABLE CATEGORY
+CREATE TABLE hackathon_test.CATEGORY
 (
     ID   SERIAL PRIMARY KEY NOT NULL,
     NAME VARCHAR
 );
 
-ALTER TABLE CASES
+ALTER TABLE hackathon_test.CASES
     add column category_id SERIAL NOT NULL;
 
-update cases
+update hackathon_test.cases
 set category_id = 1
 where id = 1;
 
-ALTER TABLE CATEGORY
+ALTER TABLE Chackathon_test.ATEGORY
     add column parent_id SERIAL NOT NULL;
 
 insert into CATEGORY(NAME)
@@ -60,32 +60,32 @@ ALTER TABLE hackathon_test.competence_case
         FOREIGN KEY (ID)
             REFERENCES hackathon_test.CASES;
 
-CREATE TABLE CRITERIA
+CREATE TABLE hackathon_test.CRITERIA
 (
     ID   SERIAL PRIMARY KEY NOT NULL,
     NAME VARCHAR
 );
 
-CREATE TABLE CASE_TO_CRITERIA
+CREATE TABLE hackathon_test.CASE_TO_CRITERIA
 (
     CASE_ID     INT NOT NULL,
     CRITERIA_ID INT NOT NULL,
     PRIMARY KEY (CRITERIA_ID, CASE_ID)
 );
 
-insert into CRITERIA (NAME) values ('Стоимость');
+insert into hackathon_test.CRITERIA (NAME) values ('Стоимость');
 
-insert into CASE_TO_CRITERIA(CASE_ID, CRITERIA_ID) VALUES (1, 1);
+insert into hackathon_test.CASE_TO_CRITERIA(CASE_ID, CRITERIA_ID) VALUES (1, 1);
 
-CREATE TABLE USERS
+CREATE TABLE hackathon_test.USERS
 (
     ID   SERIAL PRIMARY KEY NOT NULL,
     NAME VARCHAR
 );
 
-insert into USERS (NAME) values ('Test user');
+insert into hackathon_test.USERS (NAME) values ('Test user');
 
-CREATE TABLE GRADES
+CREATE TABLE hackathon_test.GRADES
 (
     ID   SERIAL PRIMARY KEY NOT NULL,
     NAME VARCHAR NOT NULL,
