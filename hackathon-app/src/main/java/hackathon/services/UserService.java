@@ -6,6 +6,7 @@ import hackathon.model.UserRepresentation;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -23,6 +24,16 @@ public class UserService {
 
 	public List<UserRepresentation> getAllUsers() {
 		return userRepository.findAll().stream().map(UserService::getUserRepresentation).collect(Collectors.toList());
+	}
+
+	public UserRepresentation getUserById(Long userId) {
+		Optional<UserEntity> userEntity = userRepository.findById(userId);
+		if (userEntity.isPresent()) {
+			return getUserRepresentation(userEntity.get());
+		} else {
+			return UserRepresentation.builder().build();
+		}
+
 	}
 
 	public static UserRepresentation getUserRepresentation(UserEntity userEntity) {
