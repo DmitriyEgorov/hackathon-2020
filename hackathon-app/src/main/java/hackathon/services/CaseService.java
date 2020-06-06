@@ -39,4 +39,8 @@ public class CaseService {
 				.criteriaRepresentations(criteriaRepresentations)
 				.build();
 	}
+
+	public static List<CaseRepresentation> prepareCaseRepresentationList(List<CaseEntity> caseEntities) {
+		return caseEntities.stream().map(CaseService::prepareCaseRepresentation).collect(Collectors.toList());
+	}
 }
