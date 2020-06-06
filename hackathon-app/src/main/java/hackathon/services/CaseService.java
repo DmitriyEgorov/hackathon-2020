@@ -2,11 +2,8 @@ package hackathon.services;
 
 import hackathon.db.model.CaseEntity;
 import hackathon.db.repository.CasePagebleRepository;
-import hackathon.model.CaseRepresentation;
+import hackathon.model.*;
 import hackathon.db.repository.CaseRepository;
-import hackathon.model.CaseRepresentationShort;
-import hackathon.model.CriteriaRepresentation;
-import hackathon.model.GradeRepresentation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -43,6 +40,10 @@ public class CaseService {
 
     public CaseRepresentation getCase(Long id) {
         return prepareCaseRepresentation(caseRepository.getOne(id));
+    }
+
+    public CaseRepresentationDetailShort getCaseShort(Long id) {
+        return prepareCaseRepresentationDetailShort(caseRepository.getOne(id));
     }
 
     public Page<CaseRepresentationShort> getCaseRepresentationByCategory(Integer page, Integer size, Long categoryId, Long caseType) {
@@ -93,6 +94,16 @@ public class CaseService {
                         caseEntity.getDescription().substring(
                                 0,
                                 caseEntity.getDescription().length() < 100 ? caseEntity.getDescription().length() : 100))
+                .imagePath(caseEntity.getImagePath())
+                .build();
+    }
+
+    private static CaseRepresentationDetailShort prepareCaseRepresentationDetailShort(CaseEntity caseEntity) {
+        return CaseRepresentationDetailShort.builder()
+                .id(caseEntity.getId())
+                .name(caseEntity.getName())
+                .statDate(caseEntity.getStatDate() == null ? null : caseEntity.getStatDate().toString())
+                .text(caseEntity.getDescription())
                 .imagePath(caseEntity.getImagePath())
                 .build();
     }

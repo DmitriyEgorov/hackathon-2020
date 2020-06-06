@@ -1,6 +1,7 @@
 package hackathon.controller;
 
 import hackathon.model.CaseRepresentation;
+import hackathon.model.CaseRepresentationDetailShort;
 import hackathon.model.CaseRepresentationShort;
 import hackathon.services.CaseService;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,12 @@ public class CaseController {
     }
 
     @GetMapping("/{id}")
+    public CaseRepresentationDetailShort getCaseShort(@PathVariable("id") Long id) {
+        return caseService.getCaseShort(id);
+    }
+
+
+    @GetMapping("/{id}/all")
     public CaseRepresentation getCase(@PathVariable("id") Long id) {
         return caseService.getCase(id);
     }
