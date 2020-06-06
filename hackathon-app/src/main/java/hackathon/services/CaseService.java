@@ -35,6 +35,12 @@ public class CaseService {
                 .collect(Collectors.toList());
     }
 
+    public List<CaseRepresentationShort> getAllCasesShort() {
+        return caseRepository.findAll().stream()
+                .map(CaseService::prepareCaseRepresentationShort)
+                .collect(Collectors.toList());
+    }
+
     public CaseRepresentation getCase(Long id) {
         return prepareCaseRepresentation(caseRepository.getOne(id));
     }

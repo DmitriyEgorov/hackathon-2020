@@ -23,6 +23,11 @@ public class CaseController {
     }
 
     @GetMapping
+    public List<CaseRepresentationShort> getAllCasesShort() {
+        return caseService.getAllCasesShort();
+    }
+
+    @GetMapping("/all")
     public List<CaseRepresentation> getAllCases() {
         return caseService.getAllCases();
     }
