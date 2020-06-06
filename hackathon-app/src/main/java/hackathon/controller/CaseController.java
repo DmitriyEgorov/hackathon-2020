@@ -1,6 +1,5 @@
 package hackathon.controller;
 
-import hackathon.db.model.CaseEntity;
 import hackathon.model.CaseRepresentation;
 import hackathon.services.CaseService;
 import org.springframework.data.domain.Page;
@@ -33,8 +32,8 @@ public class CaseController {
 	}
 
 	@GetMapping("/bycategory")
-	public Page<CaseEntity> getCasesByCategoryId(@RequestParam("id") Long categoryId, @RequestParam(required = false, name = "page") Integer page,
+	public Page<CaseRepresentation> getCasesByCategoryId(@RequestParam("id") Long categoryId, @RequestParam(required = false, name = "page") Integer page,
 												 @RequestParam(required = false, name = "size") Integer size) {
-		return caseService.getCasesByCategory(page, size, categoryId);
+		return caseService.getCaseRepresentationByCategory(page, size, categoryId);
 	}
 }

@@ -38,8 +38,11 @@ public class CaseService {
 		return prepareCaseRepresentation(caseRepository.getOne(id));
 	}
 
+	public Page<CaseRepresentation> getCaseRepresentationByCategory(Integer page, Integer size, Long categoryId) {
+		return getCasesByCategory(page, size, categoryId).map(CaseService::prepareCaseRepresentation);
+	}
 
-	public Page<CaseEntity> getCasesByCategory(Integer page, Integer size, Long categoryId) {
+	private Page<CaseEntity> getCasesByCategory(Integer page, Integer size, Long categoryId) {
 		int pageNum = page != null ? page : 0;
 		int pageSize = size != null ? size : 10;
 		return casePagebleRepository.findByCategoryId(categoryId, PageRequest.of(pageNum, pageSize));
