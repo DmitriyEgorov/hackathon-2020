@@ -36,10 +36,10 @@ public class CompetenceService {
 	}
 
 	private static CompetenceRepresentation prepareCompetenceRepresentation(CompetenceEntity competenceEntity) {
-		return CompetenceRepresentation.builder()
-				.id(competenceEntity.getId())
-				.name(competenceEntity.getName())
-				.build();
+		CompetenceRepresentation competenceRepresentation = new CompetenceRepresentation();
+		competenceRepresentation.setId(competenceEntity.getId());
+		competenceRepresentation.setName(competenceEntity.getName());
+		return competenceRepresentation;
 	}
 
 	private static CompetenceEntity prepareCompetenceEntity(CompetenceRepresentation competenceRepresentation) {
