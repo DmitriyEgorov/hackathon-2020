@@ -2,6 +2,7 @@ package hackathon.controller;
 
 import hackathon.model.CriteriaRepresentation;
 import hackathon.services.CriteriaService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,7 @@ public class CriteriaController {
 		this.criteriaService = criteriaService;
 	}
 
+	@GetMapping
 	public List<CriteriaRepresentation> getAllCriteria() {
 		return criteriaService.getAllCriteria();
 	}
