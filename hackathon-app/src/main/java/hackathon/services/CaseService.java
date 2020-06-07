@@ -71,16 +71,28 @@ public class CaseService {
         List<CaseEntity> caseEntities;
         Pageable pageable = PageRequest.of(0, size == null ? 9 : size);
         if(categoryId != null) {
-            if(caseType != null) {
-                caseEntities = casePagebleRepository.findByCategoryIdAndCaseType(categoryId, caseType, pageable).getContent();
-            } else {
-                caseEntities = casePagebleRepository.findByCategoryId(categoryId, pageable);
+            if(categoryId == 0) {
+                caseEntities = getCasesByCaseType(caseType, pageable);
+            }
+            else {
+                if (caseType != null) {
+                    caseEntities = casePagebleRepository.findByCategoryIdAndCaseType(categoryId, caseType, pageable).getContent();
+                } else {
+                    caseEntities = casePagebleRepository.findByCategoryId(categoryId, pageable);
+                }
             }
         } else {
-            if(caseType != null) {
-                caseEntities = casePagebleRepository.findByCaseType(caseType, pageable);
-            } else {
-                caseEntities = new ArrayList<>(caseRepository.findAll(pageable).getContent());            }
+            caseEntities = getCasesByCaseType(caseType, pageable);
+        }
+        return caseEntities;
+    }
+
+    private List<CaseEntity> getCasesByCaseType(Long caseType, Pageable pageable) {
+        List<CaseEntity> caseEntities;
+        if(caseType != null) {
+            caseEntities = casePagebleRepository.findByCaseType(caseType, pageable);
+        } else {
+            caseEntities = new ArrayList<>(caseRepository.findAll(pageable).getContent());
         }
         return caseEntities;
     }
