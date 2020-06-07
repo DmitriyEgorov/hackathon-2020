@@ -6,8 +6,10 @@ import hackathon.model.*;
 import hackathon.db.repository.CaseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +40,13 @@ public class CaseService {
                 .collect(Collectors.toList());
     }
 
+    public List<CaseRepresentationShort> getAllCasesShortParam(Integer size, Long categoryId, Long caseType) {
+        return getCasesByCategory(size, categoryId, caseType)
+                .stream()
+                .map(CaseService::prepareCaseRepresentationShort)
+                .collect(Collectors.toList());
+    }
+
     public CaseRepresentation getCase(Long id) {
         return prepareCaseRepresentation(caseRepository.getOne(id));
     }
@@ -56,6 +65,24 @@ public class CaseService {
         int pageNum = page != null ? page : 0;
         int pageSize = size != null ? size : 10;
         return casePagebleRepository.findByCategoryIdAndCaseType(categoryId, caseType, PageRequest.of(pageNum, pageSize));
+    }
+
+    private List<CaseEntity> getCasesByCategory(Integer size, Long categoryId, Long caseType) {
+        List<CaseEntity> caseEntities;
+        Pageable pageable = PageRequest.of(0, size == null ? 9 : size);
+        if(categoryId != null) {
+            if(caseType != null) {
+                caseEntities = casePagebleRepository.findByCategoryIdAndCaseType(categoryId, caseType, pageable).getContent();
+            } else {
+                caseEntities = casePagebleRepository.findByCategoryId(categoryId, pageable);
+            }
+        } else {
+            if(caseType != null) {
+                caseEntities = casePagebleRepository.findByCaseType(caseType, pageable);
+            } else {
+                caseEntities = new ArrayList<>(caseRepository.findAll(pageable).getContent());            }
+        }
+        return caseEntities;
     }
 
     private Page<CaseEntity> getCasesByCategory(Integer page, Integer size) {

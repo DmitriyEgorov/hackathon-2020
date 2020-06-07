@@ -24,8 +24,11 @@ public class CaseController {
     }
 
     @GetMapping
-    public List<CaseRepresentationShort> getAllCasesShort() {
-        return caseService.getAllCasesShort();
+    public List<CaseRepresentationShort> getAllCasesShort(
+            @RequestParam(required = false, name = "case_category") Long categoryId,
+            @RequestParam(required = false, name = "case_type") Long caseType,
+            @RequestParam(required = false, name = "case_count") Integer size) {
+        return caseService.getAllCasesShortParam(size, categoryId, caseType);
     }
 
     @GetMapping("/all")
