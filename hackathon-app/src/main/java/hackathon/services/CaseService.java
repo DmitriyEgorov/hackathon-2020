@@ -82,6 +82,8 @@ public class CaseService {
                                 0,
                                 caseEntity.getDescription().length() < 100 ? caseEntity.getDescription().length() : 100))
                 .imagePath(caseEntity.getImagePath())
+                .category(caseEntity.getCategoryId().toString())
+                .type(caseEntity.getCaseType().toString())
                 .build();
     }
 
@@ -95,6 +97,8 @@ public class CaseService {
                                 0,
                                 caseEntity.getDescription().length() < 100 ? caseEntity.getDescription().length() : 100))
                 .imagePath(caseEntity.getImagePath())
+                .category(caseEntity.getCategoryId().toString())
+                .type(caseEntity.getCaseType().toString())
                 .build();
     }
 
@@ -105,6 +109,8 @@ public class CaseService {
                 .statDate(caseEntity.getStatDate() == null ? null : caseEntity.getStatDate().toString())
                 .text(caseEntity.getDescription())
                 .imagePath(caseEntity.getImagePath())
+                .category(caseEntity.getCategoryId().toString())
+                .type(caseEntity.getCaseType().toString())
                 .build();
     }
 

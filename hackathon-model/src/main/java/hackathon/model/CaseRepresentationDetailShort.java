@@ -19,4 +19,6 @@ public class CaseRepresentationDetailShort {
 	private String statDate;
 	private String text;
 	private String imagePath;
+	private String category;
+	private String type;
 }

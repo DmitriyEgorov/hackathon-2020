@@ -21,4 +21,6 @@ public class CaseRepresentationShort {
 	private String statDate;
 	private String preview;
 	private String imagePath;
+	private String category;
+	private String type;
 }

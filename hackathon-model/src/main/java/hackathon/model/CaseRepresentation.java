@@ -25,4 +25,6 @@ public class CaseRepresentation {
 	private String text;
 	private String preview;
 	private String imagePath;
+	private String category;
+	private String type;
 }
