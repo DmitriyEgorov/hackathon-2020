@@ -14,9 +14,9 @@ import java.util.List;
  */
 @Repository
 public interface CasePagebleRepository extends PagingAndSortingRepository<CaseEntity, Long> {
-	Page<CaseEntity> findByCategoryIdAndCaseType(Long categoryId, Long caseType, Pageable pageable);
+	Page<CaseEntity> findByCategoryIdAndCaseTypeOrderById(Long categoryId, Long caseType, Pageable pageable);
 
-	List<CaseEntity>findByCategoryId(Long categoryId, Pageable pageable);
+	List<CaseEntity>findByCategoryIdOrderById(Long categoryId, Pageable pageable);
 
-	List<CaseEntity>findByCaseType(Long caseType, Pageable pageable);
+	List<CaseEntity>findByCaseTypeOrderById(Long caseType, Pageable pageable);
 }

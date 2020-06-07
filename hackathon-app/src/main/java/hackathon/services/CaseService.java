@@ -64,23 +64,25 @@ public class CaseService {
     private Page<CaseEntity> getCasesByCategory(Integer page, Integer size, Long categoryId, Long caseType) {
         int pageNum = page != null ? page : 0;
         int pageSize = size != null ? size : 10;
-        return casePagebleRepository.findByCategoryIdAndCaseType(categoryId, caseType, PageRequest.of(pageNum, pageSize));
+        return casePagebleRepository.findByCategoryIdAndCaseTypeOrderById(categoryId, caseType, PageRequest.of(pageNum, pageSize));
     }
 
     private List<CaseEntity> getCasesByCategory(Integer size, Long categoryId, Long caseType) {
         List<CaseEntity> caseEntities;
         Pageable pageable = PageRequest.of(0, size == null ? 9 : size);
-        if(categoryId != null) {
-            if(categoryId == 0) {
-                caseEntities = getCasesByCaseType(caseType, pageable);
+        if (categoryId == 0) {
+            categoryId = null;
+        }
+        if(caseType == 0) {
+            caseType = null;
+        }
+        if (categoryId != null) {
+            if (caseType != null) {
+                caseEntities = casePagebleRepository.findByCategoryIdAndCaseTypeOrderById(categoryId, caseType, pageable).getContent();
+            } else {
+                caseEntities = casePagebleRepository.findByCategoryIdOrderById(categoryId, pageable);
             }
-            else {
-                if (caseType != null) {
-                    caseEntities = casePagebleRepository.findByCategoryIdAndCaseType(categoryId, caseType, pageable).getContent();
-                } else {
-                    caseEntities = casePagebleRepository.findByCategoryId(categoryId, pageable);
-                }
-            }
+
         } else {
             caseEntities = getCasesByCaseType(caseType, pageable);
         }
@@ -89,8 +91,8 @@ public class CaseService {
 
     private List<CaseEntity> getCasesByCaseType(Long caseType, Pageable pageable) {
         List<CaseEntity> caseEntities;
-        if(caseType != null) {
-            caseEntities = casePagebleRepository.findByCaseType(caseType, pageable);
+        if (caseType != null) {
+            caseEntities = casePagebleRepository.findByCaseTypeOrderById(caseType, pageable);
         } else {
             caseEntities = new ArrayList<>(caseRepository.findAll(pageable).getContent());
         }
